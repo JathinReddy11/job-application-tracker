@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Job Application Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-sans p-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Job Application Tracker</h1>
+
+    <div class="mb-8">
+        <h2 class="text-xl font-semibold mb-2">Add New Job</h2>
+        <form id="jobForm" class="space-y-4 max-w-md">
+            <input type="text" id="company" placeholder="Company Name" class="w-full border rounded p-2" required>
+            <input type="text" id="position" placeholder="Position" class="w-full border rounded p-2" required>
+            <input type="date" id="application_date" class="w-full border rounded p-2">
+            <select id="status" class="w-full border rounded p-2">
+                <option>Applied</option>
+                <option>Interview</option>
+                <option>Offer</option>
+                <option>Rejected</option>
+            </select>
+            <input type="text" id="notes" placeholder="Notes (Optional)" class="w-full border rounded p-2">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Job</button>
+        </form>
+    </div>
+    <div id="summary" class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+        <!-- These will be filled dynamically -->
+    </div>
+    <div class="flex flex-col md:flex-row items-start md:items-center gap-4 mb-6">
+        <input type="text" id="searchInput" placeholder="Search company or position"
+            class="border rounded p-2 w-full md:w-1/2" />
+
+        <select id="statusFilter" class="border rounded p-2">
+            <option value="">All Statuses</option>
+            <option value="Applied">Applied</option>
+            <option value="Interview">Interview</option>
+            <option value="Offer">Offer</option>
+            <option value="Rejected">Rejected</option>
+        </select>
+    </div>
+    <h2 class="text-xl font-semibold mb-2">All Jobs</h2>
+    <div class="flex flex-wrap gap-4 mb-6">
+        <button id="exportCsvBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+            📥 Download CSV
+        </button>
+
+        <button id="toggleChartBtn" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
+            🔄 Switch to Bar Chart
+        </button>
+    </div>
+
+    <table class="table-auto border w-full text-left bg-white dark:bg-gray-800 shadow">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="px-4 py-2">ID</th>
+                <th class="px-4 py-2">Company</th>
+                <th class="px-4 py-2">Position</th>
+                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Notes</th>
+                <th class="px-4 py-2">Resume</th>
+                <th class="px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="jobsTableBody">
+            <!-- Jobs go here -->
+        </tbody>
+    </table>
+    <div class="flex justify-center">
+        <canvas id="statusChart" width="240" height="240" class="my-10"></canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
