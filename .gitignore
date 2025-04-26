@@ -1,0 +1,12 @@
+# Python Virtual Environment
+venv/
+
+# Python Cache Files
+__pycache__/
+*.pyc
+
+# SQLite Database
+*.db
+
+# Uploaded Resumes
+resumes/
